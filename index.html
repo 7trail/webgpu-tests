@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WebGPU Test Suite — 20 Tests</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div>
+    <h1>WebGPU Test Suite</h1>
+    <p>20 tests: 1–10 incremental basics-to-stress, 11–20 taxing-function variants. Pick a test, or run all in sequence.</p>
+  </div>
+  <div class="header-actions">
+    <a id="blend-dl" href="testperformance.blend" download title="Blender test file for performance testing">⬇ .blend test file</a>
+    <span id="gpu-status" class="pill">checking…</span>
+    <button id="run-all">▶ Run all 1–20</button>
+    <button id="stop" disabled>■ Stop</button>
+  </div>
+</header>
+<main>
+  <aside id="test-list"></aside>
+  <section id="stage">
+    <div id="canvas-wrap">
+      <canvas id="gpu-canvas" width="960" height="600"></canvas>
+      <div id="hud">
+        <span id="hud-test">idle</span>
+      <span id="hud-fps">— fps</span>
+      <span id="hud-low">1% low —</span>
+      <span id="hud-frame">—</span>
+      </div>
+    </div>
+    <div id="perf-wrap">
+      <div id="perf-head"><span>Frame-rate history (this test)</span><span>blue = fps · red dashed = 1% low · grids 30 / 60 / 120</span></div>
+      <canvas id="fps-graph" width="960" height="140"></canvas>
+    </div>
+    <div id="controls">
+      <label>Test duration (Run-all, secs): <input id="duration" type="number" value="6" min="2" max="30" /></label>
+      <label><input id="auto-next" type="checkbox" checked /> auto-advance in Run-all</label>
+    </div>
+    <div id="log"></div>
+    <div id="results">
+      <h2>Results</h2>
+      <table>
+        <thead><tr><th>#</th><th>Test</th><th>Status</th><th>FPS (avg)</th><th>1% low</th><th>Frames</th><th>Notes</th></tr></thead>
+        <tbody id="results-body"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>Requires a WebGPU-enabled browser (Chrome 113+, Edge 113+, Firefox Nightly / 141+, Safari 26+ with flag). Served over <code>http://localhost</code> or https.</p>
+</footer>
+<script type="module" src="harness.js"></script>
+</body>
+</html>
